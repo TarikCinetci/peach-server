@@ -452,7 +452,7 @@ struct RecordDetailSheet: View {
 // MARK: - Settings
 
 struct SettingsView: View {
-    @AppStorage("serverURL") private var serverURL = ""
+    @AppStorage("serverURL") private var serverURL = APIClient.defaultServerURL
     @AppStorage("apiKey") private var apiKey = ""
     @State private var checking = false
     @State private var status: ResultMessage?
@@ -480,10 +480,12 @@ struct SettingsView: View {
                         }
                         VStack(alignment: .leading, spacing: 7) {
                             Text("API ANAHTARI").font(.system(size: 10, weight: .bold)).tracking(1).foregroundStyle(.white.opacity(0.48))
-                            SecureField("İsteğe bağlı", text: $apiKey)
+                            SecureField("Render'daki API_KEY", text: $apiKey)
                                 .textInputAutocapitalization(.never).autocorrectionDisabled()
                                 .padding(14).background(.white.opacity(0.07), in: RoundedRectangle(cornerRadius: 14))
                         }
+                        Text("Anahtarı Render panelinde peach-server → Environment bölümünden kopyala. Bu alan cihazında saklanır; GitHub'a yüklenmez.")
+                            .font(.system(size: 11)).foregroundStyle(.white.opacity(0.48)).fixedSize(horizontal: false, vertical: true)
                         Button { Task { await ping() } } label: {
                             HStack(spacing: 8) {
                                 if checking { ProgressView().tint(Theme.accent) } else { Image(systemName: "waveform.path.ecg") }

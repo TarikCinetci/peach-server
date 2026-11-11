@@ -3,11 +3,12 @@ import Foundation
 struct APIClient {
     let baseURL: URL
     let apiKey: String
+    static let defaultServerURL = "https://peach-server-i46v.onrender.com"
 
     /// Ayarlar'daki sunucu adresi ve anahtarla istemci oluşturur.
     static func current() throws -> APIClient {
         let defaults = UserDefaults.standard
-        var raw = (defaults.string(forKey: "serverURL") ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        var raw = (defaults.string(forKey: "serverURL") ?? defaultServerURL).trimmingCharacters(in: .whitespacesAndNewlines)
         guard !raw.isEmpty else {
             throw APIError.message("Önce Ayarlar'dan sunucu adresini gir.")
         }
