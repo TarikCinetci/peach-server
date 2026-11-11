@@ -453,7 +453,7 @@ struct RecordDetailSheet: View {
 
 struct SettingsView: View {
     @AppStorage("serverURL") private var serverURL = APIClient.defaultServerURL
-    @AppStorage("apiKey") private var apiKey = ""
+    @State private var apiKey = ""
     @State private var checking = false
     @State private var status: ResultMessage?
 
@@ -521,6 +521,7 @@ struct SettingsView: View {
                 .padding(.horizontal, 22).padding(.top, 18).padding(.bottom, 110)
             }
         }
+        .onAppear { apiKey = KeychainStore.loadAPIKey() ?? "" }
     }
 
     private func instructionRow(_ number: String, _ title: String, _ detail: String) -> some View {
@@ -537,6 +538,17 @@ struct SettingsView: View {
     @MainActor private func ping() async {
         checking = true
         status = nil
+        let key = apiKey.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !key.isEmpty else {
+            status = ResultMessage(success: false, message: "Render API_KEY değerini gir.")
+            checking = false
+            return
+        }
+        guard KeychainStore.saveAPIKey(key) else {
+            status = ResultMessage(success: false, message: "API anahtarı bu cihazda güvenli saklanamadı.")
+            checking = false
+            return
+        }
         do {
             let api = try APIClient.current()
             let _: OKResponse = try await api.send(api.request("/api/ping"))

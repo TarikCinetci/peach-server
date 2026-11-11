@@ -17,7 +17,7 @@ struct APIClient {
         guard let url = URL(string: raw), url.host() != nil else {
             throw APIError.message("Sunucu adresi geçersiz.")
         }
-        let key = (defaults.string(forKey: "apiKey") ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        let key = (KeychainStore.loadAPIKey() ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
         return APIClient(baseURL: url, apiKey: key)
     }
 

@@ -15,6 +15,7 @@
 		A10000000000000000000008 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000008 /* DownloadManager.swift */; };
 		A10000000000000000000009 /* FileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000009 /* FileStore.swift */; };
 		A1000000000000000000000A /* PhotoSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000A /* PhotoSaver.swift */; };
+		A1000000000000000000000B /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000D /* KeychainStore.swift */; };
 /* End PBXBuildFile section */
 /* Begin PBXFileReference section */
 		A20000000000000000000001 /* PeachApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeachApp.swift; sourceTree = "<group>"; };
@@ -29,6 +30,7 @@
 		A2000000000000000000000A /* PhotoSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSaver.swift; sourceTree = "<group>"; };
 		A2000000000000000000000B /* Peach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2000000000000000000000C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2000000000000000000000D /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 /* Begin PBXFrameworksBuildPhase section */
 		A30000000000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
@@ -39,7 +41,7 @@
 		A40000000000000000000003 /* Products */ = {isa = PBXGroup; name = Products; children = (A2000000000000000000000B, ); sourceTree = "<group>"; };
 		A40000000000000000000004 /* Views */ = {isa = PBXGroup; path = Views; sourceTree = "<group>"; children = (A20000000000000000000003, ); };
 		A40000000000000000000005 /* Models */ = {isa = PBXGroup; path = Models; sourceTree = "<group>"; children = (A20000000000000000000004, A20000000000000000000005, A20000000000000000000006, ); };
-		A40000000000000000000006 /* Services */ = {isa = PBXGroup; path = Services; sourceTree = "<group>"; children = (A20000000000000000000007, A20000000000000000000008, A20000000000000000000009, A2000000000000000000000A, ); };
+		A40000000000000000000006 /* Services */ = {isa = PBXGroup; path = Services; sourceTree = "<group>"; children = (A20000000000000000000007, A20000000000000000000008, A20000000000000000000009, A2000000000000000000000A, A2000000000000000000000D, ); };
 /* End PBXGroup section */
 /* Begin PBXNativeTarget section */
 		A50000000000000000000001 /* Peach */ = {isa = PBXNativeTarget; buildConfigurationList = A60000000000000000000002; buildPhases = (A30000000000000000000002 /* Sources */, A30000000000000000000001 /* Frameworks */, A30000000000000000000003 /* Resources */, ); buildRules = (); dependencies = (); name = Peach; productName = Peach; productReference = A2000000000000000000000B; productType = "com.apple.product-type.application"; };
@@ -51,7 +53,7 @@
 		A30000000000000000000003 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXResourcesBuildPhase section */
 /* Begin PBXSourcesBuildPhase section */
-		A30000000000000000000002 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000001, A10000000000000000000002, A10000000000000000000003, A10000000000000000000004, A10000000000000000000005, A10000000000000000000006, A10000000000000000000007, A10000000000000000000008, A10000000000000000000009, A1000000000000000000000A, ); runOnlyForDeploymentPostprocessing = 0; };
+		A30000000000000000000002 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000001, A10000000000000000000002, A10000000000000000000003, A10000000000000000000004, A10000000000000000000005, A10000000000000000000006, A10000000000000000000007, A10000000000000000000008, A10000000000000000000009, A1000000000000000000000A, A1000000000000000000000B, ); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 /* Begin XCBuildConfiguration section */
 		A70000000000000000000001 /* Debug project */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; IPHONEOS_DEPLOYMENT_TARGET = 26.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; }; name = Debug; };

@@ -10,7 +10,7 @@ Open `Peach.xcodeproj`, select the Peach scheme, and run on an iPhone or iOS 26 
 
 1. Deploy the existing `server/` service using its `render.yaml` blueprint, or host it somewhere else that runs the Dockerfile.
 2. Peach fills in the service address automatically: `https://peach-server-i46v.onrender.com`.
-3. Copy the generated `API_KEY` from the Render service's Environment page into Peach under **Ayarlar → API anahtarı**. The key is not stored in this repository.
+3. Copy the generated `API_KEY` from the Render service's Environment page into Peach under **Ayarlar → API anahtarı**. Peach saves it in iOS Keychain, never in this repository.
 4. Use **Bağlantıyı denetle** to confirm the app can reach `/api/ping`.
 
 The app keeps completed downloads in its Documents folder, which is visible in the Files app. When enabled, it also asks for permission to add photos and videos to Photos.
