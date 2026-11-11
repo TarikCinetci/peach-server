@@ -272,7 +272,7 @@ struct HomeView: View {
             HStack(spacing: 0) {
                 ForEach(Platform.featured.prefix(5), id: \.self) { platform in
                     VStack(spacing: 7) {
-                        Image(systemName: platform.symbol).font(.system(size: 17, weight: .semibold)).foregroundStyle(platform.color)
+                        PlatformLogo(platform: platform)
                             .frame(width: 43, height: 43).background(platform.color.opacity(0.12), in: RoundedRectangle(cornerRadius: 14))
                         Text(platform.name).font(.system(size: 9, weight: .medium)).foregroundStyle(.white.opacity(0.57)).lineLimit(1).minimumScaleFactor(0.8)
                     }
@@ -594,5 +594,53 @@ struct PeachMark: View {
             .clipShape(RoundedRectangle(cornerRadius: size * 0.34, style: .continuous))
             .shadow(color: Theme.accent.opacity(0.30), radius: 12, y: 5)
             .accessibilityLabel("Peach")
+    }
+}
+
+
+/// Platform brand marks drawn as scalable SwiftUI vectors.
+private struct PlatformLogo: View {
+    let platform: Platform
+
+    var body: some View {
+        Group {
+            switch platform {
+            case .instagram:
+                ZStack {
+                    RoundedRectangle(cornerRadius: 6, style: .continuous)
+                        .stroke(.white, lineWidth: 2.4).frame(width: 25, height: 25)
+                    Circle().stroke(.white, lineWidth: 2.4).frame(width: 11, height: 11)
+                    Circle().fill(.white).frame(width: 3.2, height: 3.2).offset(x: 7.5, y: -7.5)
+                }
+            case .tiktok:
+                Text("♪")
+                    .font(.system(size: 28, weight: .black, design: .rounded))
+                    .foregroundStyle(.white)
+                    .shadow(color: Color(red: 0.0, green: 0.9, blue: 0.86), radius: 0, x: -1.8, y: 0)
+                    .shadow(color: Color(red: 1.0, green: 0.1, blue: 0.3), radius: 0, x: 1.8, y: 0)
+            case .youtube:
+                ZStack {
+                    RoundedRectangle(cornerRadius: 6, style: .continuous)
+                        .fill(Color(red: 1.0, green: 0.0, blue: 0.0)).frame(width: 27, height: 19)
+                    Path { path in
+                        path.move(to: CGPoint(x: 0, y: 0))
+                        path.addLine(to: CGPoint(x: 0, y: 10))
+                        path.addLine(to: CGPoint(x: 8, y: 5))
+                        path.closeSubpath()
+                    }
+                    .fill(.white).frame(width: 8, height: 10)
+                }
+            case .x:
+                Text("𝕏").font(.system(size: 24, weight: .bold)).foregroundStyle(.white)
+            case .facebook:
+                Text("f").font(.system(size: 30, weight: .bold, design: .rounded))
+                    .foregroundStyle(Color(red: 0.28, green: 0.52, blue: 1.0))
+                    .offset(y: 3)
+            default:
+                Image(systemName: platform.symbol).font(.system(size: 17, weight: .semibold)).foregroundStyle(platform.color)
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .accessibilityLabel(platform.name)
     }
 }
