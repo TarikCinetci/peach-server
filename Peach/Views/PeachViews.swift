@@ -14,6 +14,7 @@ struct HomeView: View {
     @State private var info: MediaInfo?
     @State private var loading = false
     @State private var errorMessage: String?
+    @State private var selectedQuality = "best"
     @State private var saveToPhotos = true
     @FocusState private var linkFocused: Bool
 
@@ -180,12 +181,39 @@ struct HomeView: View {
                 Spacer(minLength: 0)
             }
 
-            HStack(spacing: 8) {
-                Image(systemName: "sparkles")
-                Text("En yüksek kaynak kalitesi")
+            if item.kind == "video" && !item.qualities.isEmpty {
+                VStack(alignment: .leading, spacing: 9) {
+                    Text("İNDİRME KALİTESİ")
+                        .font(.system(size: 10, weight: .bold)).tracking(1)
+                        .foregroundStyle(.white.opacity(0.55))
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 8) {
+                            ForEach(item.qualities, id: \.self) { option in
+                                Button { selectedQuality = option } label: {
+                                    HStack(spacing: 5) {
+                                        if selectedQuality == option { Image(systemName: "checkmark") }
+                                        Text(qualityLabel(option))
+                                    }
+                                    .font(.system(size: 12, weight: .semibold))
+                                    .foregroundStyle(selectedQuality == option ? .black.opacity(0.82) : .white.opacity(0.76))
+                                    .padding(.horizontal, 12).padding(.vertical, 9)
+                                    .background(selectedQuality == option ? Theme.accent : .white.opacity(0.08), in: Capsule())
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                    }
+                    Text("Varsayılan: en yüksek kalite. Fotoğraf gönderileri orijinal kalitede iner.")
+                        .font(.system(size: 11)).foregroundStyle(.white.opacity(0.50))
+                }
+            } else {
+                HStack(spacing: 8) {
+                    Image(systemName: "sparkles")
+                    Text("Fotoğraflar orijinal kalitede indirilecek")
+                }
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundStyle(Theme.accent)
             }
-            .font(.system(size: 12, weight: .semibold))
-            .foregroundStyle(Theme.accent)
 
 
             Toggle(isOn: $saveToPhotos) {
@@ -197,7 +225,7 @@ struct HomeView: View {
 
             Button {
                 guard !loading else { return }
-                manager.start(link: normalizedLink, info: item, quality: "best", saveToPhotos: saveToPhotos, context: modelContext)
+                manager.start(link: normalizedLink, info: item, quality: selectedQuality, saveToPhotos: saveToPhotos, context: modelContext)
                 info = nil
                 link = ""
             } label: {
@@ -291,6 +319,7 @@ struct HomeView: View {
             let request = try api.request("/api/info", method: "POST", body: ["url": candidate])
             let result: MediaInfo = try await api.send(request)
             info = result
+            selectedQuality = result.qualities.first ?? "best"
         } catch {
             errorMessage = error.localizedDescription
         }
