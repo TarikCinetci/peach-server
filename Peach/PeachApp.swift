@@ -23,12 +23,15 @@ struct RootView: View {
     var body: some View {
         TabView(selection: $tab) {
             Tab("İndir", systemImage: "arrow.down.circle.fill", value: 0) {
-                HomeView(openSettings: { tab = 2 })
+                HomeView(openSettings: { tab = 3 })
             }
             Tab("Kitaplık", systemImage: "square.stack.fill", value: 1) {
                 LibraryView()
             }
-            Tab("Ayarlar", systemImage: "gearshape.fill", value: 2) {
+            Tab("Araçlar", systemImage: "slider.horizontal.3", value: 2) {
+                ImageToolsView()
+            }
+            Tab("Ayarlar", systemImage: "gearshape.fill", value: 3) {
                 SettingsView()
             }
         }
