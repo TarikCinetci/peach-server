@@ -587,7 +587,7 @@ private struct ResultMessage { let success: Bool; let message: String }
 struct PeachMark: View {
     var size: CGFloat = 42
     var body: some View {
-        Image("AppIcon")
+        Image("PeachLogo")
             .resizable()
             .scaledToFit()
             .frame(width: size, height: size)
