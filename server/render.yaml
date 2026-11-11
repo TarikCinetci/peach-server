@@ -2,6 +2,7 @@ services:
   - type: web
     name: peach-server
     runtime: docker
+    region: frankfurt
     plan: free
     rootDir: server
     healthCheckPath: /health
