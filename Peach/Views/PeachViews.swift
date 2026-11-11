@@ -472,7 +472,6 @@ struct RecordDetailSheet: View {
 // MARK: - Settings
 
 struct SettingsView: View {
-    @AppStorage("serverURL") private var serverURL = APIClient.defaultServerURL
     @State private var apiKey = ""
     @State private var checking = false
     @State private var status: ResultMessage?
@@ -492,19 +491,22 @@ struct SettingsView: View {
 
                     VStack(alignment: .leading, spacing: 16) {
                         Label("Sunucu", systemImage: "server.rack").font(.system(size: 16, weight: .bold, design: .rounded))
-                        VStack(alignment: .leading, spacing: 7) {
-                            Text("SUNUCU ADRESİ").font(.system(size: 10, weight: .bold)).tracking(1).foregroundStyle(.white.opacity(0.48))
-                            TextField("https://senin-sunucun.com", text: $serverURL)
-                                .textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL)
-                                .padding(14).background(.white.opacity(0.07), in: RoundedRectangle(cornerRadius: 14))
+                        HStack(spacing: 10) {
+                            Image(systemName: "checkmark.icloud.fill").foregroundStyle(Theme.accent)
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text("Render sunucusu").font(.system(size: 12, weight: .semibold))
+                                Text(APIClient.defaultServerURL).font(.system(size: 11, design: .monospaced)).foregroundStyle(.white.opacity(0.55)).textSelection(.enabled)
+                            }
+                            Spacer(minLength: 0)
                         }
+                        .padding(13).background(.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 14))
                         VStack(alignment: .leading, spacing: 7) {
                             Text("API ANAHTARI").font(.system(size: 10, weight: .bold)).tracking(1).foregroundStyle(.white.opacity(0.48))
                             SecureField("Render'daki API_KEY", text: $apiKey)
                                 .textInputAutocapitalization(.never).autocorrectionDisabled()
                                 .padding(14).background(.white.opacity(0.07), in: RoundedRectangle(cornerRadius: 14))
                         }
-                        Text("Anahtarı Render panelinde peach-server → Environment bölümünden kopyala. Bu alan cihazında saklanır; GitHub'a yüklenmez.")
+                        Text("Bağlantı adresi uygulamaya tanımlı. Render anahtarını bir kez gir; cihazında güvenli saklanır ve uygulama paketine konmaz.")
                             .font(.system(size: 11)).foregroundStyle(.white.opacity(0.48)).fixedSize(horizontal: false, vertical: true)
                         Button { Task { await ping() } } label: {
                             HStack(spacing: 8) {

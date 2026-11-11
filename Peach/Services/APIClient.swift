@@ -5,17 +5,10 @@ struct APIClient {
     let apiKey: String
     static let defaultServerURL = "https://peach-server-i46v.onrender.com"
 
-    /// Ayarlar'daki sunucu adresi ve anahtarla istemci oluşturur.
+    /// Render'daki Peach API adresine ve cihazda saklanan anahtara bağlanır.
     static func current() throws -> APIClient {
-        let defaults = UserDefaults.standard
-        var raw = (defaults.string(forKey: "serverURL") ?? defaultServerURL).trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !raw.isEmpty else {
-            throw APIError.message("Önce Ayarlar'dan sunucu adresini gir.")
-        }
-        if !raw.lowercased().hasPrefix("http") { raw = "https://" + raw }
-        while raw.hasSuffix("/") { raw.removeLast() }
-        guard let url = URL(string: raw), url.host() != nil else {
-            throw APIError.message("Sunucu adresi geçersiz.")
+        guard let url = URL(string: defaultServerURL), url.host() != nil else {
+            throw APIError.message("Peach sunucu adresi geçersiz.")
         }
         let key = (KeychainStore.loadAPIKey() ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
         return APIClient(baseURL: url, apiKey: key)
