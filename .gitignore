@@ -1,0 +1,11 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+DerivedData/
+*.xcuserstate
+xcuserdata/
+server/__pycache__/
+server/.venv/
+server/cookies.txt
+*.pyc

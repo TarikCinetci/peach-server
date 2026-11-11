@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: peach-sunucu
+    runtime: docker
+    plan: free
+    rootDir: server
+    healthCheckPath: /health
+    envVars:
+      - key: API_KEY
+        generateValue: true
+      - key: COOKIES_B64
+        sync: false
+      - key: PROXY
+        sync: false
