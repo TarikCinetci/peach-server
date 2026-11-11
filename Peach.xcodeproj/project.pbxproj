@@ -16,6 +16,7 @@
 		A10000000000000000000009 /* FileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000009 /* FileStore.swift */; };
 		A1000000000000000000000A /* PhotoSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000A /* PhotoSaver.swift */; };
 		A1000000000000000000000B /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000D /* KeychainStore.swift */; };
+		A1000000000000000000000C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000E /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 /* Begin PBXFileReference section */
 		A20000000000000000000001 /* PeachApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeachApp.swift; sourceTree = "<group>"; };
@@ -31,13 +32,14 @@
 		A2000000000000000000000B /* Peach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2000000000000000000000C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2000000000000000000000D /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
+		A2000000000000000000000E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 /* Begin PBXFrameworksBuildPhase section */
 		A30000000000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXFrameworksBuildPhase section */
 /* Begin PBXGroup section */
 		A40000000000000000000001 = {isa = PBXGroup; children = (A40000000000000000000002 /* Peach */, A40000000000000000000003 /* Products */, ); sourceTree = "<group>"; };
-		A40000000000000000000002 /* Peach */ = {isa = PBXGroup; path = Peach; sourceTree = "<group>"; children = (A20000000000000000000001, A20000000000000000000002, A40000000000000000000004 /* Views */, A40000000000000000000005 /* Models */, A40000000000000000000006 /* Services */, A2000000000000000000000C /* Info.plist */, ); };
+		A40000000000000000000002 /* Peach */ = {isa = PBXGroup; path = Peach; sourceTree = "<group>"; children = (A20000000000000000000001, A20000000000000000000002, A2000000000000000000000E /* Assets.xcassets */, A40000000000000000000004 /* Views */, A40000000000000000000005 /* Models */, A40000000000000000000006 /* Services */, A2000000000000000000000C /* Info.plist */, ); };
 		A40000000000000000000003 /* Products */ = {isa = PBXGroup; name = Products; children = (A2000000000000000000000B, ); sourceTree = "<group>"; };
 		A40000000000000000000004 /* Views */ = {isa = PBXGroup; path = Views; sourceTree = "<group>"; children = (A20000000000000000000003, ); };
 		A40000000000000000000005 /* Models */ = {isa = PBXGroup; path = Models; sourceTree = "<group>"; children = (A20000000000000000000004, A20000000000000000000005, A20000000000000000000006, ); };
@@ -50,7 +52,7 @@
 		A50000000000000000000002 /* Project object */ = {isa = PBXProject; attributes = {BuildIndependentTargetsInParallel = 1; LastSwiftUpdateCheck = 2600; LastUpgradeCheck = 2600; TargetAttributes = {A50000000000000000000001 = {CreatedOnToolsVersion = 26.0; }; }; }; buildConfigurationList = A60000000000000000000001; compatibilityVersion = "Xcode 16.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base, ); mainGroup = A40000000000000000000001; productRefGroup = A40000000000000000000003; projectDirPath = ""; projectRoot = ""; targets = (A50000000000000000000001, ); };
 /* End PBXProject section */
 /* Begin PBXResourcesBuildPhase section */
-		A30000000000000000000003 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		A30000000000000000000003 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (A1000000000000000000000C /* Assets.xcassets in Resources */, ); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXResourcesBuildPhase section */
 /* Begin PBXSourcesBuildPhase section */
 		A30000000000000000000002 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000001, A10000000000000000000002, A10000000000000000000003, A10000000000000000000004, A10000000000000000000005, A10000000000000000000006, A10000000000000000000007, A10000000000000000000008, A10000000000000000000009, A1000000000000000000000A, A1000000000000000000000B, ); runOnlyForDeploymentPostprocessing = 0; };

@@ -14,7 +14,6 @@ struct HomeView: View {
     @State private var info: MediaInfo?
     @State private var loading = false
     @State private var errorMessage: String?
-    @State private var quality = "best"
     @State private var saveToPhotos = true
     @FocusState private var linkFocused: Bool
 
@@ -181,20 +180,13 @@ struct HomeView: View {
                 Spacer(minLength: 0)
             }
 
-            if item.qualities.count > 1 {
-                HStack(spacing: 8) {
-                    ForEach(item.qualities, id: \.self) { option in
-                        Button { quality = option } label: {
-                            Text(qualityLabel(option))
-                                .font(.system(size: 12, weight: .semibold))
-                                .foregroundStyle(quality == option ? .black.opacity(0.8) : .white.opacity(0.7))
-                                .padding(.horizontal, 12).padding(.vertical, 9)
-                                .background(quality == option ? Theme.accent : .white.opacity(0.08), in: Capsule())
-                        }
-                    }
-                    Spacer(minLength: 0)
-                }
+            HStack(spacing: 8) {
+                Image(systemName: "sparkles")
+                Text("En yüksek kaynak kalitesi")
             }
+            .font(.system(size: 12, weight: .semibold))
+            .foregroundStyle(Theme.accent)
+
 
             Toggle(isOn: $saveToPhotos) {
                 Label("Fotoğraflar'a da kaydet", systemImage: "photo.on.rectangle.angled")
@@ -205,7 +197,7 @@ struct HomeView: View {
 
             Button {
                 guard !loading else { return }
-                manager.start(link: normalizedLink, info: item, quality: quality, saveToPhotos: saveToPhotos, context: modelContext)
+                manager.start(link: normalizedLink, info: item, quality: "best", saveToPhotos: saveToPhotos, context: modelContext)
                 info = nil
                 link = ""
             } label: {
@@ -299,7 +291,6 @@ struct HomeView: View {
             let request = try api.request("/api/info", method: "POST", body: ["url": candidate])
             let result: MediaInfo = try await api.send(request)
             info = result
-            quality = result.qualities.first ?? "best"
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -567,23 +558,12 @@ private struct ResultMessage { let success: Bool; let message: String }
 struct PeachMark: View {
     var size: CGFloat = 42
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: size * 0.34).fill(Theme.gradient)
-                .overlay(RoundedRectangle(cornerRadius: size * 0.34).stroke(.white.opacity(0.36), lineWidth: 1))
-            ZStack {
-                // Two soft lobes and a tapered bottom form a simple, original peach mark.
-                HStack(spacing: -size * 0.08) {
-                    Ellipse().fill(.white.opacity(0.96)).frame(width: size * 0.36, height: size * 0.42).rotationEffect(.degrees(-10))
-                    Ellipse().fill(.white.opacity(0.96)).frame(width: size * 0.36, height: size * 0.42).rotationEffect(.degrees(10))
-                }
-                Ellipse().fill(Theme.accent2).frame(width: size * 0.11, height: size * 0.27).offset(y: size * 0.09)
-                Ellipse().fill(Color(red: 0.24, green: 0.73, blue: 0.46)).frame(width: size * 0.22, height: size * 0.11)
-                    .rotationEffect(.degrees(-35)).offset(x: size * 0.12, y: -size * 0.23)
-            }
-            .frame(width: size * 0.69, height: size * 0.69)
-        }
-        .frame(width: size, height: size)
-        .shadow(color: Theme.accent.opacity(0.26), radius: 12, y: 5)
-        .accessibilityLabel("Peach")
+        Image("AppIcon")
+            .resizable()
+            .scaledToFit()
+            .frame(width: size, height: size)
+            .clipShape(RoundedRectangle(cornerRadius: size * 0.34, style: .continuous))
+            .shadow(color: Theme.accent.opacity(0.30), radius: 12, y: 5)
+            .accessibilityLabel("Peach")
     }
 }
